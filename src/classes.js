@@ -31,7 +31,19 @@ Grid.prototype = {
 		return this.points[getPoint(x,y)]; 
  },
  aliveNeighbours : function(point){
-    var alivePoints =6;
+    var x = point.x;
+    var y = point.y;
+    var alivePoints = 0;
+    var r = [-1,-1,-1,0,0,1,1,1];
+    var c = [-1,0,1,-1,1,-1,0,1];
+    for(var i = 0; i<8; i++)
+    {
+      var temp_x = x + r[i];
+      var temp_y = y + c[i];
+      if(temp_y >=0 && temp_y < col && temp_x < row && temp_x >=0)
+       if(this.getPointAt(temp_x,temp_y).alive)
+        alivePoints++;
+    }
     return alivePoints;
   }
 
