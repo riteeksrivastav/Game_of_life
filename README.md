@@ -28,6 +28,7 @@
   
 ## Running the test
 Run 
-```npm test
+```
+npm test
 ```
 in your terminal
