@@ -28,8 +28,8 @@ Grid.prototype = {
     this.points[getPoint(point.x,point.y)] = point;
   },
   getPointAt : function(x,y){
-    return {x :2, y:2 , alive:true};
-  }
+		return this.points[getPoint(x,y)]; 
+ }
 }
 
 module.exports = {
