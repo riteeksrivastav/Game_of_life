@@ -18,3 +18,17 @@ function update_grid(r,c){
     }
   }
 }
+
+function show_grid(){
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.clearRect(0,0,400,400);
+  for(var i = 0 ; i<row ; i++){
+    for(var j = 0 ; j<col ; j++){
+      if(real_grid.getPointAt(i,j).alive===true){
+        ctx.fillStyle = '#FF1005';
+        ctx.fillRect(3*i,3*j,3,3);
+      }
+    }
+  }
+}
