@@ -25,3 +25,9 @@
   ```
   npm install mocha --save-dev
   ```
+  
+## Running the test
+Run 
+```npm test
+```
+in your terminal
