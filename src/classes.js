@@ -17,7 +17,11 @@ var Grid = function(){
   this.points = {};
 }
 
-
+Grid.prototype = {
+  addPoint : function(point){
+    this.points[getPoint(point.x,point.y)] = point;
+  }
+}
 
 
 module.exports = {
