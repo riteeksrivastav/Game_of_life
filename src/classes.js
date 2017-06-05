@@ -11,8 +11,8 @@ Point.prototype = {
   }
 }
 
-var row = 400;
-var col = 400;
+const row = 400;
+const col = 400;
 
 function getPoint(x,y){
   return "x" + x + "y" + y;

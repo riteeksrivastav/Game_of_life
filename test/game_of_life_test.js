@@ -1,5 +1,5 @@
-var assert = require('assert');
-var classes = require('../src/classes');
+const assert = require('assert');
+const classes = require('../src/classes');
 
 describe('classes', function(){
 
