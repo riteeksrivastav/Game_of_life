@@ -47,7 +47,35 @@ Grid.prototype = {
     return alivePoints;
   },
   next_state : function(point){
-    var state =0;
+    var x = point.x;
+    var y = point.y;
+    var count = this.aliveNeighbours(point);
+    var state = 0;
+    if(point.alive){
+      switch(count){
+        case 0:
+        case 1:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        state = 0;
+        break;
+        case 2:
+        case 3:
+        state = 1;
+        break;
+      }
+    }else{
+      switch(count){
+        case 3:
+        state = 1;
+        break;
+        default:
+        state = 0;
+      }
+    }
     return state;
   }
 
