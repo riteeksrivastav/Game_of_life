@@ -4,11 +4,11 @@ var classes = require('../src/classes');
 describe('classes', function(){
 
 	describe('getPoint', function(){
-		it('returns x0y0 when input is 0,0', function(){
+		it('returns x0y0 when input is 1,1', function(){
 
-			assert.equal("x0y0", classes.getPoint(0,0));
+			assert.equal("x1y1", classes.getPoint(1,1));
 
 		})
-	})
+	});
 
 });

@@ -9,13 +9,14 @@ var row = 400;
 var col = 400;
 
 function getPoint(x,y){
-  return "x0y0";
+  return "x" + x + "y" + y;
 }
 
 //Grid class that represents the board
 var Grid = function(){
   this.points = {};
 }
+
 
 
 
