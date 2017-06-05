@@ -7,7 +7,8 @@
   Require Node environment and mocha version ^3.4.2(JS test framework) for testing.
 ### Installing
   
-  Installing Node
+  #### Installing Node
+  
   ##### for mac
   ```
   brew install node
@@ -15,4 +16,12 @@
   ##### for Linux
   ```
   apt-get install node
+  ```
+  Check the version by typing 
+  ```
+  node -v
+  ```
+  #### Installing Mocha
+  ```
+  npm install mocha --save-dev
   ```
