@@ -23,5 +23,17 @@ describe('classes', function(){
 		})
 	})
 
+	describe('isAlive', function(){
+		it('returns 1 when the point is alive', function(){
+
+			var grid = new classes.Grid;
+			var point = new classes.Point(2,2,true);
+
+			grid.addPoint(point);
+			assert.equal(1, point.isAlive());
+
+		})
+	})
+
 
 });

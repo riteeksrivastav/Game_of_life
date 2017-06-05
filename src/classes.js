@@ -5,6 +5,12 @@ var Point = function (x,y,alive){
   this.alive = alive;
 }
 
+Point.prototype = {
+  isAlive : function(){
+    return this.alive;
+  }
+}
+
 var row = 400;
 var col = 400;
 
@@ -22,7 +28,6 @@ Grid.prototype = {
     this.points[getPoint(point.x,point.y)] = point;
   }
 }
-
 
 module.exports = {
 	Point: Point,
