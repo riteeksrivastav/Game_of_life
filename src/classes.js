@@ -77,6 +77,23 @@ Grid.prototype = {
       }
     }
     return state;
+  },
+  fill_grid : function(r,c){
+    for(var i = 0 ; i<r ; i++){
+      for(var j = 0 ; j<c ; j++){
+        var random = Math.random();
+        var point;
+        if(random > 0.7)
+        {
+          point = new Point(i,j,true);
+        }
+        else
+        {
+          point = new Point(i,j,false);
+        }
+        this.addPoint(point);
+      }
+    }
   }
 
 }
