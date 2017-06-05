@@ -45,9 +45,14 @@ Grid.prototype = {
         alivePoints++;
     }
     return alivePoints;
+  },
+  next_state : function(point){
+    var state =0;
+    return state;
   }
 
 }
+
 
 module.exports = {
 	Point: Point,
