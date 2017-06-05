@@ -1,3 +1,22 @@
+var row = 400;
+var col = 400;
+
+
+var real_grid = new Grid;
+var dummy_grid = new Grid;
+
+real_grid.fill_grid(row,col);
+dummy_grid.fill_grid(row,col);
+
+main();
+
+function main(){
+  show_grid();
+  game_of_life_algo(row,col);
+  update_grid(row,col);
+  requestAnimationFrame(main);
+}
+
 function game_of_life_algo(r,c){
   for(var i = 0 ; i<r ; i++){
     for(var j = 0 ; j<c ; j++){
