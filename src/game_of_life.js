@@ -10,3 +10,11 @@ function game_of_life_algo(r,c){
    }
  }   
 }
+
+function update_grid(r,c){
+  for(var i = 0 ; i<r ; i++){
+    for(var j = 0 ; j<c ; j++){
+      real_grid.getPointAt(i,j).alive=dummy_grid.getPointAt(i,j).alive;
+    }
+  }
+}
