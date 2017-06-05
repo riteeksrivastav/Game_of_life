@@ -35,5 +35,17 @@ describe('classes', function(){
 		})
 	})
 
+	describe('getPointAt', function(){
+		it('returns the point at given position', function(){
+			var grid = new classes.Grid;
+			var point = new classes.Point(2,2,true);
+
+			grid.addPoint(point);
+
+			assert.equal(grid.getPointAt(2,2), point);
+
+		})
+	})
+
 
 });
