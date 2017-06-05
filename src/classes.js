@@ -29,7 +29,12 @@ Grid.prototype = {
   },
   getPointAt : function(x,y){
 		return this.points[getPoint(x,y)]; 
- }
+ },
+ aliveNeighbours : function(point){
+    var alivePoints =6;
+    return alivePoints;
+  }
+
 }
 
 module.exports = {
