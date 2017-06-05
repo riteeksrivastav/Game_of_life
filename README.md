@@ -6,9 +6,13 @@
 ### Prerequisites
   Require Node environment and mocha version ^3.4.2(JS test framework) for testing.
 ### Installing
+  
   Installing Node
   ##### for mac
+  ```
   brew install node
+  ```
   ##### for Linux
+  ```
   apt-get install node
-  
+  ```
