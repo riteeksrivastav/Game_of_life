@@ -1,11 +1,9 @@
 //Point class that represents a point on a grid
-var Point = function (x,y,alive){
+var Point = function (x,y){
   this.x = x;
   this.y = y;
 }
 
-var row = 400;
-var col = 400;
 function getPoint(x,y){
   return "x" + x + "y" + y;
 }
@@ -40,7 +38,7 @@ function getLiveNeighbours(x,y,alive) {
 }
 
 
-function next_state(alive,dummy){
+function next_state(alive, dummy){
   for(key in alive)
   {
     var live_neighbours = getLiveNeighbours(alive[key].x,alive[key].y,alive);
@@ -66,14 +64,7 @@ function next_state(alive,dummy){
       }
     }
   }
-  return dummy;
-}
-
-function update() {
-
-  alive = {};
-  alive = dummy;
-  dummy = {};
+ return dummy;
 }
 
 
