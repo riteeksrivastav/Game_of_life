@@ -27,9 +27,26 @@ function initialize()
   }
 }
 
+function getLiveNeighbours(x,y,alive) {
+  var r = [-1,-1,-1,0,0,1,1,1];
+  var c = [-1,0,1,-1,1,-1,0,1];
+  var count =0;
+  for(var i=0;i<8;i++)
+  {
+    if( alive[getPoint(x+r[i], y+c[i])] != undefined )
+      count++;
+  }
+  return count;
+}
+
+
+
+
+
 module.exports = {
   Point: Point,
-	getPoint: getPoint
+	getPoint: getPoint,
+  getLiveNeighbours
 }
 
 
