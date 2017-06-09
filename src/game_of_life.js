@@ -14,7 +14,7 @@ function main(){
   show_grid();
   game_of_life_algo(row,col);
   update_grid(row,col);
-  requestAnimationFrame(main);
+  requestAnimationFrame(main)
 }
 
 function game_of_life_algo(r,c){
@@ -27,7 +27,7 @@ function game_of_life_algo(r,c){
        dummy_grid.getPointAt(i,j).alive=false;
      }
    }
- }   
+ }
 }
 
 function update_grid(r,c){
