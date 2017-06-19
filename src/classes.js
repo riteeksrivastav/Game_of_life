@@ -1,35 +1,34 @@
 //Point class that represents a point on a grid
-var Point = function (x,y){
+let Point = function (x, y) {
   this.x = x;
   this.y = y;
 }
 
-function getPoint(x,y){
+let getPoint = function (x, y) {
   return "x" + x + "y" + y;
 }
 
-var alive = {};
-var dummy = {};
+let alive = {};
+let dummy = {};
 
-function getRandom(min, max) {
+let getRandom = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function initialize()
-{
-  for(var i = 0; i< row*40 ;i++){
-    var x = getRandom(0,row);
-    var y = getRandom(0,col);
-    var point = new Point(x,y);
+let initialize = function() {
+  for(let i = 0; i < row*40; i++) {
+    let x = getRandom(0,row);
+    let y = getRandom(0,col);
+    let point = new Point(x,y);
     alive[(getPoint(x,y))] = point;
   }
 }
 
-function getLiveNeighbours(x,y,alive) {
-  var r = [-1,-1,-1,0,0,1,1,1];
-  var c = [-1,0,1,-1,1,-1,0,1];
-  var count =0;
-  for(var i=0;i<8;i++)
+let getLiveNeighbours = function (x, y, alive) {
+  let r = [-1,-1,-1,0,0,1,1,1];
+  let c = [-1,0,1,-1,1,-1,0,1];
+  let count =0;
+  for(let i=0; i<8; i++)
   {
     if( alive[getPoint(x+r[i], y+c[i])] != undefined )
       count++;
@@ -38,26 +37,22 @@ function getLiveNeighbours(x,y,alive) {
 }
 
 
-function next_state(alive, dummy){
+let next_state = function (alive, dummy) {
   for(key in alive)
   {
-    var live_neighbours = getLiveNeighbours(alive[key].x,alive[key].y,alive);
+    let live_neighbours = getLiveNeighbours(alive[key].x, alive[key].y,alive);
     if(live_neighbours === 3 || live_neighbours === 2)
       dummy[key] = alive[key];
-    var r = [-1,-1,-1,0,0,1,1,1];
-    var c = [-1,0,1,-1,1,-1,0,1];
-    for(var i=0;i<8;i++)
-    {
-      var temp_x =  alive[key].x+r[i];
-      var temp_y =  alive[key].y + c[i];
-      if(temp_x >=0 && temp_x < row && temp_y >=0 && temp_y <col)
-      {
-         if( alive[getPoint(alive[key].x+r[i], alive[key].y + c[i])] === undefined )
-        {
-           var neighbours = getLiveNeighbours(alive[key].x + r[i], alive[key].y + c[i],alive);
-           if (neighbours === 3)
-           {
-             var point = new Point(alive[key].x + r[i], alive[key].y + c[i],true);
+    let r = [-1,-1,-1,0,0,1,1,1];
+    let c = [-1,0,1,-1,1,-1,0,1];
+    for (let i = 0; i < 8; i++) {
+      let temp_x =  alive[key].x + r[i];
+      let temp_y =  alive[key].y + c[i];
+      if (temp_x >= 0 && temp_x < row && temp_y >= 0 && temp_y < col) {
+         if (alive[getPoint(alive[key].x+r[i], alive[key].y + c[i])] === undefined) {
+           let neighbours = getLiveNeighbours(alive[key].x + r[i], alive[key].y + c[i],alive);
+           if (neighbours === 3)  {
+             let point = new Point(alive[key].x + r[i], alive[key].y + c[i],true);
              dummy[getPoint(alive[key].x + r[i], alive[key].y + c[i])] = point;
            }
         }
@@ -67,18 +62,9 @@ function next_state(alive, dummy){
  return dummy;
 }
 
-
-
 module.exports = {
   Point: Point,
 	getPoint: getPoint,
   getLiveNeighbours: getLiveNeighbours,
   next_state: next_state
-
 }
-
-
-
-
-
-

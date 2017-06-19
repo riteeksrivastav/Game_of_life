@@ -2,13 +2,13 @@
 var row = prompt("Enter row");
 var col = prompt("Enter column");
 
-document.getElementById('myCanvas').setAttribute("width",""+row+"");
-document.getElementById('myCanvas').setAttribute("height",""+col+"");
+document.getElementById('myCanvas').setAttribute("width", ""+row+"");
+document.getElementById('myCanvas').setAttribute("height", ""+col+"");
 
 initialize();
 main();
 
-function main(){
+function main() {
   show_grid();
   next_state(alive, dummy);
   update();
@@ -16,7 +16,7 @@ function main(){
 }
 
 
-function show_grid(){
+function show_grid() {
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
   ctx.clearRect(0,0,row,col);
