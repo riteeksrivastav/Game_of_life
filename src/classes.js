@@ -1,106 +1,70 @@
 //Point class that represents a point on a grid
-var Point = function (x,y,alive){
+let Point = function (x, y) {
   this.x = x;
   this.y = y;
-  this.alive = alive;
 }
 
-Point.prototype = {
-  isAlive : function(){
-    return this.alive;
-  }
-}
-
-const row = 400;
-const col = 400;
-
-function getPoint(x,y){
+let getPoint = function (x, y) {
   return "x" + x + "y" + y;
 }
 
-//Grid class that represents the board
-var Grid = function(){
-  this.points = {};
+let alive = {};
+let dummy = {};
+
+let getRandom = function (min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
-Grid.prototype = {
-  addPoint : function(point){
-    this.points[getPoint(point.x,point.y)] = point;
-  },
-  getPointAt : function(x,y){
-		return this.points[getPoint(x,y)]; 
- },
- aliveNeighbours : function(point){
-    var x = point.x;
-    var y = point.y;
-    var alivePoints = 0;
-    var r = [-1,-1,-1,0,0,1,1,1];
-    var c = [-1,0,1,-1,1,-1,0,1];
-    for(var i = 0; i<8; i++)
-    {
-      var temp_x = x + r[i];
-      var temp_y = y + c[i];
-      if(temp_y >=0 && temp_y < col && temp_x < row && temp_x >=0)
-       if(this.getPointAt(temp_x,temp_y).alive)
-        alivePoints++;
-    }
-    return alivePoints;
-  },
-  next_state : function(point){
-    var x = point.x;
-    var y = point.y;
-    var count = this.aliveNeighbours(point);
-    var state = 0;
-    if(point.alive){
-      switch(count){
-        case 0:
-        case 1:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        state = 0;
-        break;
-        case 2:
-        case 3:
-        state = 1;
-        break;
-      }
-    }else{
-      switch(count){
-        case 3:
-        state = 1;
-        break;
-        default:
-        state = 0;
-      }
-    }
-    return state;
-  },
-  fill_grid : function(r,c){
-    for(var i = 0 ; i<r ; i++){
-      for(var j = 0 ; j<c ; j++){
-        var random = Math.random();
-        var point;
-        if(random > 0.7)
-        {
-          point = new Point(i,j,true);
+let initialize = function() {
+  for(let i = 0; i < row*40; i++) {
+    let x = getRandom(0,row);
+    let y = getRandom(0,col);
+    let point = new Point(x,y);
+    alive[(getPoint(x,y))] = point;
+  }
+}
+
+let getLiveNeighbours = function (x, y, alive) {
+  let r = [-1,-1,-1,0,0,1,1,1];
+  let c = [-1,0,1,-1,1,-1,0,1];
+  let count =0;
+  for(let i=0; i<8; i++)
+  {
+    if( alive[getPoint(x+r[i], y+c[i])] != undefined )
+      count++;
+  }
+  return count;
+}
+
+
+let next_state = function (alive, dummy) {
+  for(key in alive)
+  {
+    let live_neighbours = getLiveNeighbours(alive[key].x, alive[key].y,alive);
+    if(live_neighbours === 3 || live_neighbours === 2)
+      dummy[key] = alive[key];
+    let r = [-1,-1,-1,0,0,1,1,1];
+    let c = [-1,0,1,-1,1,-1,0,1];
+    for (let i = 0; i < 8; i++) {
+      let temp_x =  alive[key].x + r[i];
+      let temp_y =  alive[key].y + c[i];
+      if (temp_x >= 0 && temp_x < row && temp_y >= 0 && temp_y < col) {
+         if (alive[getPoint(alive[key].x+r[i], alive[key].y + c[i])] === undefined) {
+           let neighbours = getLiveNeighbours(alive[key].x + r[i], alive[key].y + c[i],alive);
+           if (neighbours === 3)  {
+             let point = new Point(alive[key].x + r[i], alive[key].y + c[i],true);
+             dummy[getPoint(alive[key].x + r[i], alive[key].y + c[i])] = point;
+           }
         }
-        else
-        {
-          point = new Point(i,j,false);
-        }
-        this.addPoint(point);
       }
     }
   }
-
+ return dummy;
 }
 
-
 module.exports = {
-	Point: Point,
-	Grid: Grid,
-	getPoint: getPoint
+  Point: Point,
+	getPoint: getPoint,
+  getLiveNeighbours: getLiveNeighbours,
+  next_state: next_state
 }
