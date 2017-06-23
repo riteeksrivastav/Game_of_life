@@ -1,6 +1,6 @@
-
-var row = prompt("Enter row");
-var col = prompt("Enter column");
+'use strict'
+let row = prompt("Enter row");
+let col = prompt("Enter column");
 
 document.getElementById('myCanvas').setAttribute("width", ""+row+"");
 document.getElementById('myCanvas').setAttribute("height", ""+col+"");
@@ -17,12 +17,12 @@ function main() {
 
 
 function show_grid() {
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
+  let c = document.getElementById("myCanvas");
+  let ctx = c.getContext("2d");
   ctx.clearRect(0,0,row,col);
   for(key in alive){
     ctx.fillStyle = '#FF1005';
-    ctx.fillRect((alive[key].x)*3,(alive[key].y)*3,3,3);
+    ctx.fillRect( (alive[key].x)*3, (alive[key].y)*3,3,3 );
   }
 }
 
